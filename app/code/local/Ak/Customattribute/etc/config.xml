@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+        /**
+        * Ak  Customattribute
+        * This module is adding custom attribute in customer section and displaying in customer grid .
+        * @category    Ak
+        * @package     Ak_Customattribute
+        */
+
+        /**
+        * Ak  Customattribute
+        *
+        * @category   Ak
+        * @package    Ak_Customattribute
+        * @author     Adesh Kumar <adeshsuryan2005@gmail.com>
+        */
+-->
+
+<config>
+    <modules>
+        <Ak_Customattribute>
+            <version>0.1.0</version>
+        </Ak_Customattribute>
+    </modules>
+    <global>
+        <helpers>
+            <customattribute>
+                <class>Ak_Customattribute_Helper</class>
+            </customattribute>
+        </helpers>
+        <models>
+            <customattribute>
+                <class>Ak_Customattribute_Model</class>
+            </customattribute>
+        </models>
+        <resources>
+            <customattribute_setup>
+                <setup>
+                    <module>Ak_Customattribute</module>
+                    <class>Mage_Customer_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </customattribute_setup>
+            <customattribute_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </customattribute_write>
+            <customattribute_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </customattribute_read>
+        </resources>
+    </global>
+	    <adminhtml>
+        <events>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <customgrid_column_append>
+                        <type>model</type>
+                        <class>Ak_Customattribute_Model_Observer</class>
+                        <method>appendCustomColumn</method>
+                    </customgrid_column_append>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+        </events>
+    </adminhtml>
+</config>
